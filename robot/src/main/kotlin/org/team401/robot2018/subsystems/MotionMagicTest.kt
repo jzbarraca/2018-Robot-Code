@@ -32,7 +32,7 @@ val MotionMagicTestSubsystem: Subsystem = buildSubsystem {
                 talon.configMotionAcceleration(450, 0)
             }
             action{
-                //MAX Veloity = 932
+                //MAX Velocity = 932
                 talon.set(ControlMode.MotionMagic, position)
 
             }
@@ -42,7 +42,7 @@ val MotionMagicTestSubsystem: Subsystem = buildSubsystem {
         state("Open loop"){
             action {
                 talon.set(ControlMode.PercentOutput, Stick.readAxis { PITCH })
-                println(talon.getSelectedSensorVelocity(0))
+                println("${talon.getSelectedSensorVelocity(0)*(600.0/4096)} ${System.currentTimeMillis()}")
             }
         }
 
