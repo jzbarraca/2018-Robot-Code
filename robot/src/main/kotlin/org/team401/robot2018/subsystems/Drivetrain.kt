@@ -5,6 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice
 import com.ctre.phoenix.motorcontrol.can.TalonSRX
 import com.ctre.phoenix.sensors.PigeonIMU
 import edu.wpi.first.wpilibj.Solenoid
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard
 import org.snakeskin.component.Gearbox
 import org.snakeskin.dsl.*
 import org.snakeskin.component.TankDrivetrain
@@ -12,6 +13,7 @@ import org.snakeskin.event.Events
 import org.team401.robot2018.Constants
 import org.team401.robot2018.LeftStick
 import org.team401.robot2018.RightStick
+import java.lang.Thread.sleep
 
 /*
  * 2018-Robot-Code - Created on 1/13/18
@@ -60,6 +62,8 @@ val DrivetrainSubsystem: Subsystem = buildSubsystem {
         println("----------SETUP DONE----------")
     }
 
+
+
     val driveMachine = stateMachine(DRIVE_MACHINE) {
         state(DriveStates.OPEN_LOOP) {
             entry {
@@ -77,6 +81,100 @@ val DrivetrainSubsystem: Subsystem = buildSubsystem {
             }
         }
     }
+    test("Drivetrain test"){
+        println("Running drivetrain test")
+
+        sleep(1000)
+        leftFront.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val leftFrontEncPosition = leftFront.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_LEFT_FRONT_CAN)
+        val leftFrontEncVelocity = leftFront.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_LEFT_FRONT_CAN)
+        SmartDashboard.putNumber("leftFront Position", leftFrontEncPosition.toDouble())
+        SmartDashboard.putNumber("leftFront Velocity", leftFrontEncVelocity.toDouble())
+        leftFront.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        leftMidF.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val leftMidFEncPosition = leftMidF.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_LEFT_MIDF_CAN)
+        val leftMidFEncVelocity = leftMidF.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_LEFT_MIDF_CAN)
+        SmartDashboard.putNumber("leftMidF Position", leftMidFEncPosition.toDouble())
+        SmartDashboard.putNumber("leftMidF Velocity", leftMidFEncVelocity.toDouble())
+        leftMidF.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        leftMidR.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val leftMidREncPosition = leftMidR.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_LEFT_MIDR_CAN)
+        val leftMidREncVelocity = leftMidR.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_LEFT_MIDR_CAN)
+        SmartDashboard.putNumber("leftMidR Position", leftMidREncPosition.toDouble())
+        SmartDashboard.putNumber("leftMidR Velocity", leftMidREncVelocity.toDouble())
+        leftMidR.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        leftRear.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val leftRearEncPosition = leftRear.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_LEFT_REAR_CAN)
+        val leftRearEncVelocity = leftRear.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_LEFT_REAR_CAN)
+        SmartDashboard.putNumber("leftRear Position", leftRearEncPosition.toDouble())
+        SmartDashboard.putNumber("leftRear Velocity", leftRearEncVelocity.toDouble())
+        leftRear.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        rightFront.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val rightFrontEncPosition = rightFront.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_RIGHT_FRONT_CAN)
+        val rightFrontEncVelocity = rightFront.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_RIGHT_FRONT_CAN)
+        SmartDashboard.putNumber("rightFront Position", rightFrontEncPosition.toDouble())
+        SmartDashboard.putNumber("rightFront Velocity", rightFrontEncVelocity.toDouble())
+        rightFront.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        rightMidF.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val rightMidFEncPosition = rightMidF.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_RIGHT_MIDF_CAN)
+        val rightMidFEncVelocity = rightMidF.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_RIGHT_MIDF_CAN)
+        SmartDashboard.putNumber("rightMidF Position", rightMidFEncPosition.toDouble())
+        SmartDashboard.putNumber("rightMidF Velocity", rightMidFEncVelocity.toDouble())
+        rightMidF.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        rightMidR.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val rightMidREncPosition = rightMidR.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_RIGHT_MIDR_CAN)
+        val rightMidREncVelocity = rightMidR.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_RIGHT_MIDR_CAN)
+        SmartDashboard.putNumber("rightMidR Position", rightMidREncPosition.toDouble())
+        SmartDashboard.putNumber("rightMidR Velocity", rightMidREncVelocity.toDouble())
+        rightMidR.set(ControlMode.PercentOutput, 0.0)
+
+        sleep(1000)
+        rightRear.set(ControlMode.PercentOutput, 1.0)
+        sleep(1000)
+        //Not sure if pidIdx if correct
+        val rightRearEncPosition = rightRear.getSelectedSensorPosition(Constants.MotorControllers.DRIVE_RIGHT_REAR_CAN)
+        val rightRearEncVelocity = rightRear.getSelectedSensorVelocity(Constants.MotorControllers.DRIVE_RIGHT_REAR_CAN)
+        SmartDashboard.putNumber("rightRear Position", rightRearEncPosition.toDouble())
+        SmartDashboard.putNumber("rightRear Velocity", rightRearEncVelocity.toDouble())
+        rightRear.set(ControlMode.PercentOutput, 0.0)
+
+        leftMidF.follow(leftFront)
+        leftMidR.follow(leftFront)
+        leftRear.follow(leftFront)
+
+        rightMidF.follow(rightFront)
+        rightMidR.follow(rightFront)
+        rightRear.follow(rightFront)
+
+        false
+    }
+
 
     on (Events.TELEOP_ENABLED) {
         driveMachine.setState(DriveStates.OPEN_LOOP)
